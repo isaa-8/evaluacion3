@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casos de Uso RMR Fashion</title>
+    <link rel="stylesheet" href="estilos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .page-hero {
+            background-image: linear-gradient(to right, rgba(255,128,119,0.65), rgba(177,42,91,0.65)), url(img-galeria/tienda.jpg);
+            background-size: cover; background-position: center;
+            padding: 100px 0 60px; text-align: center; color: #fff;
+        }
+        .page-hero h1 { font-size: 46px; font-weight: 700; }
+        .page-hero p  { font-size: 18px; font-weight: 300; }
+
+        .diag-section { padding: 60px 0; }
+
+        .diag-wrapper {
+            background: #fff; border-radius: 16px;
+            box-shadow: 0 4px 28px rgba(0,0,0,.10);
+            padding: 30px; overflow-x: auto;
+        }
+
+        .tabla-casos {
+            margin-top: 50px;
+        }
+        .tabla-casos th {
+            background-image: linear-gradient(to right, #667eea, #764ba2);
+            color: #fff; font-weight: 600;
+        }
+        .tabla-casos td { vertical-align: top; color: #555; font-size: 14px; line-height: 1.7; }
+        .tabla-casos tr:nth-child(even) td { background: #f8f6ff; }
+
+        .badge-actor {
+            display: inline-block; padding: 3px 10px; border-radius: 12px;
+            font-size: 12px; font-weight: 600; color: #fff; margin-bottom: 2px;
+        }
+        .bg-cliente  { background: #b12a5b; }
+        .bg-asesor   { background: #667eea; }
+        .bg-admin    { background: #2193b0; }
+        .bg-sistema  { background: #38b2ac; }
+    </style>
+</head>
+<body>
+    <header class="page-hero">
+        <button class="menus" id="btnMenu">☰</button>
+        <nav class="menu-navegacion">
+            <a href="index.html">Inicio</a>
+            <a href="index.html#servicio">Servicio</a>
+            <a href="index.html#galeria">Galeria</a>
+            <a href="index.html#expertos">Expertos</a>
+            <a href="contacto.html">Contactos</a>
+            <a href="tienda.html">Tienda</a>
+            <a href="quienes-somos.html">Quiénes Somos</a>
+            <a href="terminos.html">Términos y Condiciones</a>
+            <a href="requerimientos.html">Proyecto</a>
+            <a href="diagrama-clases.html">Diagrama Clases</a>
+            <a href="casos-uso.html">Casos de Uso</a>
+        </nav>
+        <div class="container">
+            <h1>Diagrama de Casos de Uso</h1>
+            <p>Interacciones de los actores con el sistema RMR Fashion</p>
+            <div class="mt-4 d-flex gap-3 justify-content-center flex-wrap"></div>
+        </div>
+    </header>
+
+    <main class="diag-section">
+        <div class="container">
+            <h2 class="subtitulo">Diagrama de Casos de Uso</h2>
+
+            <div class="diag-wrapper">
+                <div class="diagrama-wrapper">
+                    <img src="img-galeria/Diagrama diagraaadrawio.svg.svg" alt="Diagrama de Casos de Uso RMR Fashion" 
+                         style="width:100%; height:auto; min-width:700px;">
+                </div>
+            </div>
+    
+            <div class="tabla-casos">
+                <h2 class="subtitulo" style="margin-top:40px;">Descripción de Casos de Uso</h2>
+                <div class="table-responsive">
+                    <table class="table table-bordered tabla-casos">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Caso de Uso</th>
+                                <th>Actor(es)</th>
+                                <th>Descripción</th>
+                                <th>Precondición</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Cliente -->
+                            <tr>
+                                <td>CU01</td>
+                                <td>Registrarse</td>
+                                <td><span class="badge-actor bg-cliente">Cliente</span></td>
+                                <td>El cliente crea una cuenta en el sistema proporcionando nombre, correo y contraseña.</td>
+                                <td>El cliente no tiene cuenta registrada previamente.</td>
+                            </tr>
+                            <tr>
+                                <td>CU02</td>
+                                <td>Iniciar sesión</td>
+                                <td><span class="badge-actor bg-cliente">Cliente</span> <span class="badge-actor bg-admin">Admin</span></td>
+                                <td>El usuario (cliente o admin) ingresa sus credenciales para acceder al sistema.</td>
+                                <td>El usuario tiene una cuenta activa registrada.</td>
+                            </tr>
+                            <tr>
+                                <td>CU03</td>
+                                <td>Ver catálogo</td>
+                                <td><span class="badge-actor bg-cliente">Cliente</span></td>
+                                <td>El cliente navega por los productos disponibles visualizando imágenes, precios, tallas y colores.</td>
+                                <td>El cliente ha accedido al sitio web.</td>
+                            </tr>
+                            <tr>
+                                <td>CU04</td>
+                                <td>Agregar al carrito</td>
+                                <td><span class="badge-actor bg-cliente">Cliente</span></td>
+                                <td>El cliente selecciona un producto y especifica cantidad/talla para añadirlo al carrito de compras.</td>
+                                <td>El cliente está autenticado y hay productos en el catálogo.</td>
+                            </tr>
+                            <tr>
+                                <td>CU05</td>
+                                <td>Realizar pedido</td>
+                                <td><span class="badge-actor bg-cliente">Cliente</span></td>
+                                <td>El cliente confirma los productos en el carrito, ingresa datos de envío y finaliza la compra.</td>
+                                <td>El carrito contiene al menos un producto y el cliente está autenticado.</td>
+                            </tr>
+                            <tr>
+                                <td>CU06</td>
+                                <td>Realizar pago</td>
+                                <td><span class="badge-actor bg-sistema">Sistema de pagos</span></td>
+                                <td>El sistema procesa el pago del pedido a través de pasarela externa (tarjeta, transferencia, etc.).</td>
+                                <td>El cliente ha confirmado el pedido y proporcionado datos de pago válidos.</td>
+                            </tr>
+                            <tr>
+                                <td>CU07</td>
+                                <td>Gestionar productos</td>
+                                <td><span class="badge-actor bg-admin">Administrador</span></td>
+                                <td>El administrador agrega, edita, activa/desactiva o elimina productos del catálogo.</td>
+                                <td>El administrador ha iniciado sesión con rol de admin.</td>
+                            </tr>
+                            <tr>
+                                <td>CU08</td>
+                                <td>Gestionar usuarios</td>
+                                <td><span class="badge-actor bg-admin">Administrador</span></td>
+                                <td>El administrador puede visualizar, activar, suspender o eliminar cuentas de clientes.</td>
+                                <td>El administrador ha iniciado sesión con rol de admin.</td>
+                            </tr>
+                            <tr>
+                                <td>CU09</td>
+                                <td>Ver historial de pedidos</td>
+                                <td><span class="badge-actor bg-cliente">Cliente</span></td>
+                                <td>El cliente consulta sus compras anteriores con detalles de estado, fecha y total.</td>
+                                <td>El cliente está autenticado y ha realizado al menos un pedido previo.</td>
+                            </tr>
+                            <tr>
+                                <td>CU10</td>
+                                <td>Actualizar perfil</td>
+                                <td><span class="badge-actor bg-cliente">Cliente</span></td>
+                                <td>El cliente modifica sus datos personales, dirección o contraseña.</td>
+                                <td>El cliente está autenticado en el sistema.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="contenedor footer-content">
+            <div class="contact-us">
+                <h2 class="brand">RMR Fashion</h2>
+                <p>Somos expertos en la creación de tu guardarropa ideal</p>
+            </div>
+            <div class="social-media">
+                <a href="./" class="social-media-icon"><i class="bx bxl-facebook"></i></a>
+                <a href="./" class="social-media-icon"><i class="bx bxl-twitter"></i></a>
+                <a href="./" class="social-media-icon"><i class="bx bxl-instagram"></i></a>
+            </div>
+        </div>
+        <div class="line"></div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/menu.js"></script>
+</body>
+</html>

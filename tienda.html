@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda  RMR Fashion</title>
+    <link rel="stylesheet" href="estilos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        
+        .banner-tienda {
+            background-image: linear-gradient(135deg, rgba(255,129,119,0.85) 0%, rgba(177,42,91,0.85) 100%), url(img-galeria/tienda.jpg);
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 120px 0 70px;
+            text-align: center;
+            color: #fff;
+        }
+        .banner-tienda h1 { font-size: 52px; font-weight: 700; text-shadow: 0 2px 8px rgba(0,0,0,.3); }
+        .banner-tienda p  { font-size: 20px; font-weight: 300; }
+        .banner-badge {
+            display: inline-block;
+            background: rgba(255,255,255,.2);
+            border: 2px solid rgba(255,255,255,.5);
+            padding: 6px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(4px);
+        }
+
+        .tienda-section { padding: 60px 0; }
+
+        .producto-card {
+            border: none;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,.09);
+            overflow: hidden;
+            transition: transform .25s, box-shadow .25s;
+            height: 100%;
+        }
+        .producto-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 32px rgba(0,0,0,.14);
+        }
+
+       
+        .producto-img {
+            height: 320px;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, #f8f6ff, #e8e0ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .producto-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            display: block;
+        }
+
+        .producto-body { padding: 24px; }
+        .producto-body h5 { font-weight: 700; color: #333; margin-bottom: 4px; }
+        .producto-price {
+            font-size: 22px; font-weight: 700;
+            background: -webkit-linear-gradient(#ff8177, #b12a5b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .btn-agregar {
+            background-image: linear-gradient(to right, #ff8177, #b12a5b);
+            color: #fff; border: none; border-radius: 30px;
+            padding: 8px 22px; font-size: 14px; font-weight: 600;
+            width: 100%; transition: opacity .3s;
+        }
+        .btn-agregar:hover { opacity: .85; color: #fff; }
+
+        .carrito-section {
+            background: #f8f6ff;
+            padding: 60px 0;
+        }
+        .carrito-card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,.09);
+            padding: 36px;
+        }
+        .carrito-item {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 12px 0; border-bottom: 1px solid #f0eeff;
+        }
+        .carrito-item:last-child { border-bottom: none; }
+        .item-nombre { font-weight: 600; color: #333; }
+        .item-precio { color: #b12a5b; font-weight: 700; }
+        .btn-eliminar {
+            background: none; border: none; color: #dc3545;
+            font-size: 18px; cursor: pointer; padding: 0 6px;
+        }
+        .carrito-total {
+            font-size: 22px; font-weight: 700; text-align: right;
+            color: #333; padding-top: 16px;
+        }
+        .carrito-vacio { text-align: center; color: #aaa; padding: 30px 0; }
+
+        .compra-section { padding: 60px 0; }
+        .compra-card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,.09);
+            padding: 40px;
+        }
+        .form-label { font-weight: 600; color: #555; }
+        .form-control:focus, .form-select:focus, .form-check-input:focus {
+            border-color: #9f8ad0;
+            box-shadow: 0 0 0 .2rem rgba(159,138,208,.25);
+        }
+        .btn-comprar {
+            background-image: linear-gradient(to right, #667eea, #764ba2);
+            color: #fff; border: none; border-radius: 30px;
+            padding: 14px 50px; font-size: 16px; font-weight: 700;
+            transition: opacity .3s;
+        }
+        .btn-comprar:hover { opacity: .85; color: #fff; }
+
+        .campo-error { border-color: #dc3545 !important; }
+        .campo-ok    { border-color: #28a745 !important; }
+        .msg-error   { color: #dc3545; font-size: 13px; margin-top: 4px; display: none; }
+        .msg-exito   {
+            background: #d4edda; color: #155724; border: 1px solid #c3e6cb;
+            border-radius: 8px; padding: 20px; display: none; margin-top: 20px;
+            text-align: center; font-size: 16px;
+        }
+        .error-check { color: #dc3545; font-size: 13px; display: none; }
+
+        .share-section {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 50px 0;
+            text-align: center;
+            color: #fff;
+        }
+        .share-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 12px 28px; border-radius: 30px; font-weight: 600;
+            font-size: 15px; text-decoration: none; margin: 8px;
+            transition: transform .2s, opacity .2s;
+        }
+        .share-btn:hover { transform: scale(1.06); opacity: .9; }
+        .share-fb  { background: #1877f2; color: #fff; }
+        .share-tw  { background: #1da1f2; color: #fff; }
+        .share-ig  { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; }
+        .share-wa  { background: #25d366; color: #fff; }
+    </style>
+</head>
+<body>
+
+    <header class="banner-tienda">
+        <button class="menus" id="btnMenu">☰</button>
+        <nav class="menu-navegacion">
+            <a href="index.html">Inicio</a>
+            <a href="index.html#servicio">Servicio</a>
+            <a href="index.html#galeria">Galeria</a>
+            <a href="index.html#expertos">Expertos</a>
+            <a href="contacto.html">Contactos</a>
+            <a href="tienda.html">Tienda</a>
+            <a href="herramientas.html">Herramientas</a>
+            <a href="quienes-somos.html">Quiénes Somos</a>
+            <a href="terminos.html">Términos y Condiciones</a>
+            <a href="requerimientos.html">Proyecto</a>
+            <a href="diagrama-clases.html">Diagrama Clases</a>
+            <a href="casos-uso.html">Casos de Uso</a>
+        </nav>
+        <div class="container">
+            <div class="banner-badge"></div>
+            <h1>Tienda RMR Fashion</h1>
+            <p>Encuentra tu estilo, a tu medida, a tu precio</p>
+            <div class="mt-4 d-flex gap-3 justify-content-center flex-wrap">
+                <a href="#productos" class="btn btn-light btn-lg px-4 rounded-pill">Ver Productos</a>
+                <a href="#formulario-compra" class="btn btn-outline-light btn-lg px-4 rounded-pill">Comprar Ahora</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="tienda-section" id="productos">
+            <div class="container">
+                <h2 class="subtitulo">Nuestros Productos</h2>
+                
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="producto-card">
+                            <div class="producto-img">
+                                <img src="img-galeria/dos.jpg" alt="Vestido Casual">
+                            </div>
+                            <div class="producto-body">
+                                <h5>Vestido Casual</h5>
+                                <p class="producto-price">$29.990</p>
+                                <p style="font-size:13px;color:#888;">Tallas S, M, L, XL</p>
+                                <button class="btn-agregar" onclick="agregarAlCarrito('Vestido Casual', 29990)">
+                                    <i class="bx bx-cart-add"></i> Agregar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="producto-card">
+                            <div class="producto-img">
+                                <img src="img-galeria/camisasman.jpg" alt="Camisa Formal">
+                            </div>
+                            <div class="producto-body">
+                                <h5>Camisa Formal</h5>
+                                <p class="producto-price">$24.990</p>
+                                <p style="font-size:13px;color:#888;">Tallas S, M, L</p>
+                                <button class="btn-agregar" onclick="agregarAlCarrito('Camisa Formal', 24990)">
+                                    <i class="bx bx-cart-add"></i> Agregar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="producto-card">
+                            <div class="producto-img">
+                                <img src="img-galeria/cinco.jpg" alt="Pantalón">
+                            </div>
+                            <div class="producto-body">
+                                <h5>Pantalón</h5>
+                                <p class="producto-price">$34.990</p>
+                                <p style="font-size:13px;color:#888;">Tallas 38–46</p>
+                              
+                                <button class="btn-agregar" onclick="agregarAlCarrito('Pantalón Slim', 34990)">
+                                    <i class="bx bx-cart-add"></i> Agregar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="producto-card">
+                            <div class="producto-img">
+                                <img src="img-galeria/cuatro.jpg" alt="Blaizer Largo">
+                            </div>
+                            <div class="producto-body">
+                                <h5>Blaizer Largo</h5>
+                                <p class="producto-price">$64.990</p>
+                                <p style="font-size:13px;color:#888;">Tallas S, M, L</p>
+                               
+                                <button class="btn-agregar" onclick="agregarAlCarrito('Blaizer Largo', 64990)">
+                                    <i class="bx bx-cart-add"></i> Agregar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="producto-card">
+                            <div class="producto-img">
+                                <img src="img-galeria/tres.jpg" alt="Chaqueta Cremallera">
+                            </div>
+                            <div class="producto-body">
+                                <h5>Chaqueta con Cremallera</h5>
+                                <p class="producto-price">$19.990</p>
+                                <p style="font-size:13px;color:#888;">Tallas S, M, L</p>
+                                
+                                <button class="btn-agregar" onclick="agregarAlCarrito('Chaqueta Cremallera', 19990)">
+                                    <i class="bx bx-cart-add"></i> Agregar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="producto-card">
+                            <div class="producto-img">
+                                <img src="img-galeria/seis.jpg" alt="Abrigo">
+                            </div>
+                            <div class="producto-body">
+                                <h5>Abrigo</h5>
+                                <p class="producto-price">$89.990</p>
+                                <p style="font-size:13px;color:#888;">Tallas S, M, L, XL</p>
+                                <button class="btn-agregar" onclick="agregarAlCarrito('Abrigo Patagonia', 89990)">
+                                    <i class="bx bx-cart-add"></i> Agregar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="carrito-section" id="carrito">
+            <div class="container">
+                <h2 class="subtitulo">Carrito de Compras</h2>
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="carrito-card">
+                            <div id="lista-carrito">
+                                <div class="carrito-vacio" id="carrito-vacio">
+                                    Tu carrito está vacío. ¡Agrega productos!
+                                </div>
+                            </div>
+                            <div class="carrito-total" id="carrito-total" style="display:none;">
+                                Total: <span id="valor-total">$0</span>
+                            </div>
+                            <div class="text-end mt-3" id="btn-ir-comprar" style="display:none;">
+                                <a href="#formulario-compra" class="btn-comprar btn">
+                                    Proceder al pago <i class="bx bx-right-arrow-alt"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="compra-section" id="formulario-compra">
+            <div class="container">
+                <h2 class="subtitulo">Datos de Compra</h2>
+                <div class="row justify-content-center">
+                    <div class="col-lg-9">
+                        <div class="compra-card">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="c-nombre" class="form-label">Nombre completo *</label>
+                                    <input type="text" id="c-nombre" class="form-control" placeholder="Juan Pérez">
+                                    <p class="msg-error" id="err-c-nombre">Ingresa tu nombre completo.</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="c-email" class="form-label">Correo electrónico *</label>
+                                    <input type="email" id="c-email" class="form-control" placeholder="juan@correo.com">
+                                    <p class="msg-error" id="err-c-email">Ingresa un correo válido.</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="c-telefono" class="form-label">Teléfono *</label>
+                                    <input type="tel" id="c-telefono" class="form-control" placeholder="+56 9 1234 5678">
+                                    <p class="msg-error" id="err-c-telefono">Ingresa un teléfono válido.</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="c-direccion" class="form-label">Dirección de despacho *</label>
+                                    <input type="text" id="c-direccion" class="form-control" placeholder="Av. Principal 123">
+                                    <p class="msg-error" id="err-c-direccion">Ingresa tu dirección.</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="c-region" class="form-label">Región *</label>
+                                    <select id="c-region" class="form-select">
+                                        <option value="">Selecciona tu región</option>
+                                        <option value="magallanes">Magallanes</option>
+                                        <option value="aysen">Aysén</option>
+                                        <option value="lagos">Los Lagos</option>
+                                        <option value="metropolitana">Metropolitana</option>
+                                        <option value="otro">Otra región</option>
+                                    </select>
+                                    <p class="msg-error" id="err-c-region">Selecciona tu región.</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="c-talla" class="form-label">Talla general *</label>
+                                    <select id="c-talla" class="form-select">
+                                        <option value="">Selecciona talla</option>
+                                        <option value="XS">XS</option>
+                                        <option value="S">S (Small)</option>
+                                        <option value="M">M (Medium)</option>
+                                        <option value="L">L (Large)</option>
+                                        <option value="XL">XL</option>
+                                        <option value="XXL">XXL</option>
+                                    </select>
+                                    <p class="msg-error" id="err-c-talla">Selecciona una talla.</p>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">Método de pago *</label>
+                                    <div class="d-flex flex-wrap gap-3 mt-1">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="pago" id="pago-tarjeta" value="tarjeta">
+                                            <label class="form-check-label" for="pago-tarjeta">
+                                                <i class="bx bx-credit-card"></i> Tarjeta de crédito/débito
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="pago" id="pago-transferencia" value="transferencia">
+                                            <label class="form-check-label" for="pago-transferencia">
+                                                <i class="bx bx-transfer"></i> Transferencia bancaria
+                                            </label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="pago" id="pago-efectivo" value="efectivo">
+                                            <label class="form-check-label" for="pago-efectivo">
+                                                <i class="bx bx-money"></i> Efectivo
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <p class="error-check" id="err-pago">Selecciona un método de pago.</p>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">Servicios adicionales (opcional)</label>
+                                    <div class="d-flex flex-wrap gap-3 mt-1">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="extra-envio" value="envio">
+                                            <label class="form-check-label" for="extra-envio">Envío express (+$5.000)</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="extra-regalo" value="regalo">
+                                            <label class="form-check-label" for="extra-regalo">Empaque de regalo (+$2.000)</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" id="extra-asesoria" value="asesoria">
+                                            <label class="form-check-label" for="extra-asesoria">Asesoría de talle (+$10.000)</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="c-terminos">
+                                        <label class="form-check-label" for="c-terminos">
+                                            Acepto los <a href="terminos.html" style="color:#9f8ad0;">Términos y Condiciones</a>
+                                            y la Política de Privacidad. *
+                                        </label>
+                                    </div>
+                                    <p class="error-check" id="err-c-terminos">Debes aceptar los términos y condiciones.</p>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="c-newsletter">
+                                        <label class="form-check-label" for="c-newsletter">
+                                            Suscribirme al newsletter y recibir ofertas exclusivas
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-12 text-center mt-3">
+                                    <button class="btn-comprar btn" onclick="validarCompra()">
+                                        <i class="bx bx-check-circle"></i> Confirmar Pedido
+                                    </button>
+                                </div>
+                                <div class="msg-exito col-12" id="msg-compra">
+                                    ¡Pedido confirmado! Recibirás un correo con los detalles de tu compra.
+                                    <br><strong>¡Gracias por comprar en RMR Fashion!</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="contenedor footer-content">
+            <div class="contact-us">
+                <h2 class="brand">RMR Fashion</h2>
+                <p>Somos expertos en la creación de tu guardarropa ideal</p>
+            </div>
+            <div class="social-media">
+                <a href="./" class="social-media-icon"><i class="bx bxl-facebook"></i></a>
+                <a href="./" class="social-media-icon"><i class="bx bxl-twitter"></i></a>
+                <a href="./" class="social-media-icon"><i class="bx bxl-instagram"></i></a>
+            </div>
+        </div>
+        <div class="line"></div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/menu.js"></script>
+    <script>
+        let carrito = [];
+        let contadorId = 0;
+
+        function agregarAlCarrito(nombre, precio) {
+            const producto = { id: contadorId++, nombre: nombre, precio: precio };
+            carrito.push(producto);
+            renderCarrito();
+            document.getElementById('carrito').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function eliminarDelCarrito(id) {
+            carrito = carrito.filter(p => p.id !== id);
+            renderCarrito();
+        }
+
+        function calcularTotal() {
+            let total = carrito.reduce((sum, p) => sum + p.precio, 0);
+            if (document.getElementById('extra-envio')?.checked)    total += 5000;
+            if (document.getElementById('extra-regalo')?.checked)   total += 2000;
+            if (document.getElementById('extra-asesoria')?.checked) total += 10000;
+            return total;
+        }
+
+        function formatearPrecio(valor) {
+            return '$' + valor.toLocaleString('es-CL');
+        }
+
+        function renderCarrito() {
+            const lista    = document.getElementById('lista-carrito');
+            const vacio    = document.getElementById('carrito-vacio');
+            const totalDiv = document.getElementById('carrito-total');
+            const btnIr    = document.getElementById('btn-ir-comprar');
+
+            if (carrito.length === 0) {
+                lista.innerHTML = '';
+                lista.appendChild(vacio);
+                vacio.style.display = 'block';
+                totalDiv.style.display = 'none';
+                btnIr.style.display = 'none';
+                return;
+            }
+
+            vacio.style.display = 'none';
+            lista.innerHTML = '';
+
+            carrito.forEach(p => {
+                const item = document.createElement('div');
+                item.className = 'carrito-item';
+                item.innerHTML = `
+                    <span class="item-nombre">🛍️ ${p.nombre}</span>
+                    <div class="d-flex align-items-center gap-3">
+                        <span class="item-precio">${formatearPrecio(p.precio)}</span>
+                        <button class="btn-eliminar" onclick="eliminarDelCarrito(${p.id})" title="Eliminar">✕</button>
+                    </div>
+                `;
+                lista.appendChild(item);
+            });
+
+            totalDiv.style.display = 'block';
+            document.getElementById('valor-total').textContent = formatearPrecio(calcularTotal());
+            btnIr.style.display = 'block';
+        }
+
+        ['extra-envio','extra-regalo','extra-asesoria'].forEach(id => {
+            document.getElementById(id).addEventListener('change', () => {
+                if (carrito.length > 0) {
+                    document.getElementById('valor-total').textContent = formatearPrecio(calcularTotal());
+                }
+            });
+        });
+
+        function mostrarErrorC(idCampo, idError, mostrar) {
+            const campo = document.getElementById(idCampo);
+            const error = document.getElementById(idError);
+            if (!campo || !error) return;
+            if (mostrar) {
+                campo.classList.add('campo-error');
+                campo.classList.remove('campo-ok');
+                error.style.display = 'block';
+            } else {
+                campo.classList.remove('campo-error');
+                campo.classList.add('campo-ok');
+                error.style.display = 'none';
+            }
+        }
+
+        function mostrarErrorCheck(idError, mostrar) {
+            document.getElementById(idError).style.display = mostrar ? 'block' : 'none';
+        }
+
+        function esEmailValido(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        function esTelefonoValido(tel) {
+            return /^[0-9+\s\-]+$/.test(tel);
+        }
+
+        function validarCompra() {
+            let valido = true;
+
+            const nombre = document.getElementById('c-nombre').value.trim();
+            if (nombre.length < 3) { mostrarErrorC('c-nombre','err-c-nombre', true); valido = false; }
+            else mostrarErrorC('c-nombre','err-c-nombre', false);
+
+            const email = document.getElementById('c-email').value.trim();
+            if (!esEmailValido(email)) { mostrarErrorC('c-email','err-c-email', true); valido = false; }
+            else mostrarErrorC('c-email','err-c-email', false);
+
+            const tel = document.getElementById('c-telefono').value.trim();
+            if (!esTelefonoValido(tel) || tel === '') { mostrarErrorC('c-telefono','err-c-telefono', true); valido = false; }
+            else mostrarErrorC('c-telefono','err-c-telefono', false);
+
+            const dir = document.getElementById('c-direccion').value.trim();
+            if (dir.length < 5) { mostrarErrorC('c-direccion','err-c-direccion', true); valido = false; }
+            else mostrarErrorC('c-direccion','err-c-direccion', false);
+
+            const region = document.getElementById('c-region').value;
+            if (region === '') { mostrarErrorC('c-region','err-c-region', true); valido = false; }
+            else mostrarErrorC('c-region','err-c-region', false);
+
+            const talla = document.getElementById('c-talla').value;
+            if (talla === '') { mostrarErrorC('c-talla','err-c-talla', true); valido = false; }
+            else mostrarErrorC('c-talla','err-c-talla', false);
+
+            const pagoSeleccionado = document.querySelector('input[name="pago"]:checked');
+            if (!pagoSeleccionado) { mostrarErrorCheck('err-pago', true); valido = false; }
+            else mostrarErrorCheck('err-pago', false);
+
+            const terminos = document.getElementById('c-terminos').checked;
+            if (!terminos) { mostrarErrorCheck('err-c-terminos', true); valido = false; }
+            else mostrarErrorCheck('err-c-terminos', false);
+
+            if (carrito.length === 0) {
+                alert('Tu carrito está vacío. Agrega al menos un producto antes de continuar.');
+                valido = false;
+            }
+
+            if (valido) {
+                document.getElementById('msg-compra').style.display = 'block';
+                carrito = [];
+                renderCarrito();
+                document.getElementById('msg-compra').scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        document.getElementById('c-nombre').addEventListener('input', function() {
+            mostrarErrorC('c-nombre','err-c-nombre', this.value.trim().length < 3);
+        });
+        document.getElementById('c-email').addEventListener('input', function() {
+            mostrarErrorC('c-email','err-c-email', !esEmailValido(this.value.trim()));
+        });
+        document.getElementById('c-telefono').addEventListener('input', function() {
+            mostrarErrorC('c-telefono','err-c-telefono', !esTelefonoValido(this.value.trim()));
+        });
+    </script>
+</body>
+</html>

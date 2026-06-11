@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RMR Fashion</title>
+    <link rel="stylesheet" href="estilos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="header" id="Inicio"> 
+        <button class="menus" id="btnMenu">☰</button>
+        <nav class= "menu-navegacion">
+            <a href="#inicio">Inicio</a>
+            <a href="#servicio">Servicio</a>
+            <a href="#galeria">Galeria</a>
+            <a href="#expertos">Expertos</a>
+            <a href="#contacto">Contactos</a>
+            <a href="tienda.html">Tienda</a>
+            <a href="herramientas.html">Herramientas</a>
+            <a href="quienes-somos.html">Quiénes Somos</a>
+            <a href="terminos.html">Términos y Condiciones</a>
+            <a href="requerimientos.html">Proyecto</a>
+            <a href="diagrama-clases.html">Diagrama Clases</a>
+            <a href="casos-uso.html">Casos de Uso</a>
+        </nav>
+        <div class="contenedor head">
+            <h1 class="titulo">Tu estilo, nuestra pasión</h1> 
+            <p class="copy">Porque cada cuerpo es único y merece ropa que lo refleje.</p>
+            <div class="mt-4 d-flex gap-3 justify-content-center flex-wrap">
+                <a href="tienda.html" class="btn btn-light btn-lg px-4">Ver Tienda</a>
+                <a href="contacto.html" class="btn btn-outline-light btn-lg px-4">Contáctanos</a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <section class="contenedor" id="servicio">
+        <h2 class="subtitulo">Nuestro servicio</h2>
+        <div class="contenedor-servicio">
+            <img src="imagen-light/tijeras.svg" alt="">
+            <div class="checklist-servicio">
+                <div class="service">
+                    <h3 class="n-service"><span class="number">1</span>Asesoría de talle</h3>
+                    <p>Identificamos tu tipo de cuerpo y te recomendamos las prendas, 
+                        cortes y tallas que mejor se adaptan a tus medidas reales, 
+                        evitando devoluciones y compras erróneas</p>
+                </div>
+                <div class="service">
+                    <h3 class="n-service"><span class="number">2</span>Personal shopper</h3>
+                    <p>Seleccionamos un conjunto completo de prendas y accesorios adaptado a una 
+                        ocasión específica (boda, entrevista, vacaciones) o a la temporada
+                        que viene, según tu presupuesto y estilo personal.</p>
+                </div>
+                <div class="service">
+                    <h3 class="n-service"><span class="number">3</span>Ajustes y reformas</h3>
+                    <p>Modificamos el largo, ancho o forma de tus prendas favoritas 
+                        que no terminan de ajustarse, o renovamos ropa en desuso para darle una nueva vida</p>
+                </div>
+            </div>
+        </div>
+        </section>
+        <section class="gallery" id="galeria">
+            <div class="contenedor">
+                <h2 class="subtitulo">Galeria</h2>
+                <div class="contenedor-galeria">
+                    <img src="img-galeria/clothes.jpg" alt="" class="img-galeria">
+                    <img src="img-galeria/man.jpg" alt="" class="img-galeria">
+                    <img src="img-galeria/maniqui.jpg" alt="" class="img-galeria">
+                    <img src="img-galeria/woman.jpg" alt="" class="img-galeria">                  
+                </div>
+            </div>
+        </section>
+        <section class="imagen-light">
+            <img src="imagen-light/close.svg" alt="" class="close">
+            <img src="img-galeria/tienda.jpg" alt="" class="agregar-imagen">
+        </section>
+        <section class="contenedor" id="expertos">
+            <h2 class="subtitulos">Expertos en:</h2>
+            <section class="experts">
+                <div class="cont-expert">
+                    <img src="imagen-light/style.svg" alt="">
+                    <h3 class="n-expert">Estilo</h3>
+                </div>
+                <div class="cont-expert">
+                    <img src="imagen-light/medidas.svg" alt="">
+                    <h3 class="n-expert">Medidas</h3>
+                </div>
+                <div class="cont-expert">
+                    <img src="imagen-light/telas.svg" alt="">
+                    <h3 class="n-expert">Telas</h3>
+                </div>
+            </section>
+        </section>
+    </main>
+    <footer id="contacto">
+        <div class="contenedor footer-content">
+            <div class="contact-us">
+                <h2 class="brand">RMR Fashion</h2>
+                <p>Somos expertos en la creacion de tu guarda ropa ideal</p>
+            </div>
+            <div class="social-media">
+                <a href="./" class="social-media-icon">
+                    <i class="bx bxl-facebook"></i> 
+                </a>
+                <a href="./" class="social-media-icon">
+                    <i class="bx bxl-twitter"></i>
+                </a>
+                <a href="./" class="social-media-icon">
+                    <i class="bx bxl-instagram"></i> 
+                </a>
+            </div>
+        </div>
+        <div class="line"></div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/lightbox.js"></script>
+</body>
+</html>

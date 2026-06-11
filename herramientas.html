@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herramientas - RMR Fashion</title>
+    <link rel="stylesheet" href="estilos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <header class="page-hero">
+        <button class="menus" id="btnMenu">☰</button>
+        <nav class="menu-navegacion">
+            <a href="index.html">Inicio</a>
+            <a href="index.html#servicio">Servicio</a>
+            <a href="index.html#galeria">Galeria</a>
+            <a href="index.html#expertos">Expertos</a>
+            <a href="contacto.html">Contactos</a>
+            <a href="tienda.html">Tienda</a>
+            <a href="herramientas.html">Herramientas</a>
+            <a href="quienes-somos.html">Quiénes Somos</a>
+            <a href="terminos.html">Términos y Condiciones</a>
+            <a href="requerimientos.html">Proyecto</a>
+            <a href="diagrama-clases.html">Diagrama Clases</a>
+            <a href="casos-uso.html">Casos de Uso</a>
+        </nav>
+        <div class="container">
+            <h1>Herramientas Exclusivas</h1>
+            <p>Utilidades especiales para nuestros clientes</p>
+        </div>
+    </header>
+
+    <main class="tools-section">
+        <div class="container">
+            <h2 class="subtitulo">Todo lo que necesitas en un solo lugar</h2>
+            
+            <div class="row g-4">
+                
+                <div class="col-md-6">
+                    <div class="tool-card">
+                        <div class="tool-icon icon-edad">
+                            <i class="bx bx-calendar"></i>
+                        </div>
+                        <h3> Calculadora de Edad</h3>
+                        <p>Ingresa tu fecha de nacimiento y descubre exactamente cuántos años tienes.</p>
+                        
+                        <div class="mb-3">
+                            <label for="fechaNacimiento" class="form-label fw-bold">Fecha de Nacimiento:</label>
+                            <input type="date" id="fechaNacimiento" class="form-control">
+                        </div>
+                        
+                        <button class="btn-tool" onclick="calcularEdad()">
+                            <i class="bx bx-calculator"></i> Calcular mi edad
+                        </button>
+                        
+                        <div id="resultadoEdad" class="resultado-box"></div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="tool-card">
+                        <div class="tool-icon icon-rut">
+                            <i class="bx bx-id-card"></i>
+                        </div>
+                        <h3> Validador de RUT Chileno</h3>
+                        <p>Verifica si tu RUT es válido con nuestro algoritmo oficial.</p>
+                        
+                        <div class="mb-3">
+                            <label for="rutInput" class="form-label fw-bold">Ingresa tu RUT:</label>
+                            <input type="text" id="rutInput" class="form-control" placeholder="Ej: 12.345.678-5">
+                            <small class="text-muted">Formato: números, puntos y guión</small>
+                        </div>
+                        
+                        <button class="btn-tool btn-rut" onclick="validarRUT()">
+                            <i class="bx bx-check-circle"></i> Validar RUT
+                        </button>
+                        
+                        <div id="resultadoRUT" class="resultado-box"></div>
+                    </div>
+                </div>
+                
+                <div class="col-md-6">
+                    <div class="tool-card">
+                        <div class="tool-icon icon-encrypt">
+                            <i class="bx bx-lock-alt"></i>
+                        </div>
+                        <h3> Encriptador de Texto</h3>
+                        <p>Convierte tu mensaje en un texto cifrado y guárdalo en LocalStorage.</p>
+                        
+                        <div class="mb-3">
+                            <label for="textoOriginal" class="form-label fw-bold">Texto a encriptar:</label>
+                            <textarea id="textoOriginal" class="form-control" rows="2" placeholder="Escribe un mensaje secreto..."></textarea>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="claveEncriptacion" class="form-label fw-bold">Clave de encriptación (número):</label>
+                            <input type="number" id="claveEncriptacion" class="form-control" placeholder="Ej: 3">
+                            <small class="text-muted">Usamos Cifrado César (desplazamiento de letras)</small>
+                        </div>
+                        
+                        <button class="btn-tool btn-encrypt" onclick="encriptarYGuardar()">
+                            <i class="bx bx-save"></i> Encriptar y Guardar
+                        </button>
+                        
+                        <div id="resultadoEncriptado" class="resultado-box"></div>
+                        
+                        <hr class="my-3">
+                        
+                        <h5 class="mb-2"> Datos Guardados Localmente</h5>
+                        <button class="btn btn-sm btn-secondary mb-2" onclick="mostrarDatosGuardados()">
+                            <i class="bx bx-show"></i> Mostrar último dato guardado
+                        </button>
+                        <div id="localStorageData" class="localstorage-data">
+                            No hay datos guardados aún.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="tool-card">
+                        <div class="tool-icon icon-api">
+                            <i class="bx bx-dollar-circle"></i>
+                        </div>
+                        <h3> Indicadores Económicos</h3>
+                        <p>Valores actualizados de UF, UTM y Euro en pesos chilenos.</p>
+                        
+                        <div id="indicadoresContainer" class="text-center">
+                            <div class="spinner-border text-primary" role="status" id="loadingSpinner">
+                                <span class="visually-hidden">Cargando...</span>
+                            </div>
+                            <div id="indicadoresContent" style="display: none;">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="border rounded p-2">
+                                            <strong>🇨🇱 UF</strong>
+                                            <div id="valorUF" class="valor-moneda">-</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="border rounded p-2">
+                                            <strong> UTM</strong>
+                                            <div id="valorUTM" class="valor-moneda">-</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="border rounded p-2">
+                                            <strong>Euro</strong>
+                                            <div id="valorEuro" class="valor-moneda">-</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="text-muted mt-3 small">Última actualización: <span id="fechaActualizacion">-</span></p>
+                            </div>
+                        </div>
+                        
+                        <hr>
+                        
+                        <h5 class="mb-3"> Calculadora de Conversión</h5>
+                        <div class="mb-3">
+                            <label for="tipoMoneda" class="form-label fw-bold">Selecciona indicador:</label>
+                            <select id="tipoMoneda" class="form-select">
+                                <option value="uf">UF </option>
+                                <option value="utm">UTM</option>
+                                <option value="euro">Euro</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cantidad" class="form-label fw-bold">Cantidad:</label>
+                            <input type="number" id="cantidad" class="form-control" placeholder="Ej: 1" value="1">
+                        </div>
+                        <button class="btn-tool btn-api" onclick="calcularConversion()">
+                            <i class="bx bx-transfer"></i> Calcular en Pesos Chilenos
+                        </button>
+                        <div id="resultadoConversion" class="resultado-box"></div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="contenedor footer-content">
+            <div class="contact-us">
+                <h2 class="brand">RMR Fashion</h2>
+                <p>Somos expertos en la creación de tu guardarropa ideal</p>
+            </div>
+            <div class="social-media">
+                <a href="./" class="social-media-icon"><i class="bx bxl-facebook"></i></a>
+                <a href="./" class="social-media-icon"><i class="bx bxl-twitter"></i></a>
+                <a href="./" class="social-media-icon"><i class="bx bxl-instagram"></i></a>
+            </div>
+        </div>
+        <div class="line"></div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/menu.js"></script>
+    
+    <script>
+
+        function calcularEdad() {
+            const fechaInput = document.getElementById('fechaNacimiento').value;
+            const resultadoDiv = document.getElementById('resultadoEdad');
+            
+            if (!fechaInput) {
+                resultadoDiv.style.display = 'block';
+                resultadoDiv.className = 'resultado-box alert alert-danger';
+                resultadoDiv.innerHTML = 'Por favor, selecciona una fecha de nacimiento.';
+                return;
+            }
+            
+            const hoy = new Date();
+            const fechaNac = new Date(fechaInput);
+            
+            if (fechaNac > hoy) {
+                resultadoDiv.style.display = 'block';
+                resultadoDiv.className = 'resultado-box alert alert-danger';
+                resultadoDiv.innerHTML = 'La fecha de nacimiento no puede ser futura.';
+                return;
+            }
+            
+            let edad = hoy.getFullYear() - fechaNac.getFullYear();
+            const mesActual = hoy.getMonth();
+            const mesNacimiento = fechaNac.getMonth();
+            
+            if (mesActual < mesNacimiento || (mesActual === mesNacimiento && hoy.getDate() < fechaNac.getDate())) {
+                edad--;
+            }
+            
+            resultadoDiv.style.display = 'block';
+            resultadoDiv.className = 'resultado-box alert alert-success';
+            resultadoDiv.innerHTML = ` <strong>Tu edad es ${edad} años.</strong><br>
+                                      <small>Naciste el ${fechaNac.toLocaleDateString('es-CL')}</small>`;
+        }
+
+        function validarRUT() {
+            const rutCompleto = document.getElementById('rutInput').value.trim();
+            const resultadoDiv = document.getElementById('resultadoRUT');
+            
+            if (!rutCompleto) {
+                resultadoDiv.style.display = 'block';
+                resultadoDiv.className = 'resultado-box alert alert-danger';
+                resultadoDiv.innerHTML = 'Por favor, ingresa un RUT.';
+                return;
+            }
+            
+            let rutLimpio = rutCompleto.replace(/\./g, '').replace(/-/g, '');
+            
+            if (rutLimpio.length < 2) {
+                resultadoDiv.style.display = 'block';
+                resultadoDiv.className = 'resultado-box alert alert-danger';
+                resultadoDiv.innerHTML = 'Formato de RUT inválido.';
+                return;
+            }
+            
+            const cuerpo = parseInt(rutLimpio.slice(0, -1));
+            const dvIngresado = rutLimpio.slice(-1).toUpperCase();
+            
+            if (isNaN(cuerpo)) {
+                resultadoDiv.style.display = 'block';
+                resultadoDiv.className = 'resultado-box alert alert-danger';
+                resultadoDiv.innerHTML = 'El RUT debe contener números.';
+                return;
+            }
+            
+            let suma = 0;
+            let multiplo = 2;
+            let cuerpoStr = cuerpo.toString();
+            
+            for (let i = cuerpoStr.length - 1; i >= 0; i--) {
+                suma += parseInt(cuerpoStr.charAt(i)) * multiplo;
+                multiplo = multiplo < 7 ? multiplo + 1 : 2;
+            }
+            
+            const dvEsperado = 11 - (suma % 11);
+            let dvCalculado;
+            if (dvEsperado === 11) dvCalculado = '0';
+            else if (dvEsperado === 10) dvCalculado = 'K';
+            else dvCalculado = dvEsperado.toString();
+            
+            resultadoDiv.style.display = 'block';
+            
+            if (dvIngresado === dvCalculado) {
+                resultadoDiv.className = 'resultado-box alert alert-success';
+                resultadoDiv.innerHTML = `<strong>RUT ${cuerpo}-${dvCalculado} es VÁLIDO.</strong>`;
+            } else {
+                resultadoDiv.className = 'resultado-box alert alert-danger';
+                resultadoDiv.innerHTML = `<strong>RUT INVÁLIDO.</strong><br>
+                                          El dígito verificador correcto es <strong>${dvCalculado}</strong>.`;
+            }
+        }
+
+        function cifradoCesar(texto, desplazamiento) {
+            let resultado = "";
+            for (let i = 0; i < texto.length; i++) {
+                let charCode = texto.charCodeAt(i);
+                if (charCode >= 65 && charCode <= 90) {
+                    resultado += String.fromCharCode(((charCode - 65 + desplazamiento) % 26) + 65);
+                } else if (charCode >= 97 && charCode <= 122) {
+                    resultado += String.fromCharCode(((charCode - 97 + desplazamiento) % 26) + 97);
+                } else {
+                    resultado += texto.charAt(i);
+                }
+            }
+            return resultado;
+        }
+        
+        function encriptarYGuardar() {
+            const texto = document.getElementById('textoOriginal').value;
+            const clave = parseInt(document.getElementById('claveEncriptacion').value);
+            const resultadoDiv = document.getElementById('resultadoEncriptado');
+            
+            if (!texto) {
+                resultadoDiv.style.display = 'block';
+                resultadoDiv.className = 'resultado-box alert alert-danger';
+                resultadoDiv.innerHTML = 'Por favor, escribe un texto para encriptar.';
+                return;
+            }
+            
+            if (isNaN(clave)) {
+                resultadoDiv.style.display = 'block';
+                resultadoDiv.className = 'resultado-box alert alert-danger';
+                resultadoDiv.innerHTML = 'Por favor, ingresa un número como clave de encriptación.';
+                return;
+            }
+            
+            const textoEncriptado = cifradoCesar(texto, clave);
+            
+            const datos = {
+                textoOriginal: texto,
+                textoEncriptado: textoEncriptado,
+                claveUsada: clave,
+                fecha: new Date().toLocaleString('es-CL')
+            };
+            
+            localStorage.setItem('mensajeEncriptado', JSON.stringify(datos));
+            
+            resultadoDiv.style.display = 'block';
+            resultadoDiv.className = 'resultado-box alert alert-success';
+            resultadoDiv.innerHTML = `
+                 <strong>Texto encriptado correctamente</strong><br>
+                <strong>Resultado:</strong> <code>${textoEncriptado}</code>
+            `;
+            
+            document.getElementById('textoOriginal').value = '';
+            document.getElementById('claveEncriptacion').value = '';
+            mostrarDatosGuardados();
+        }
+        
+        function mostrarDatosGuardados() {
+            const datosGuardados = localStorage.getItem('mensajeEncriptado');
+            const displayDiv = document.getElementById('localStorageData');
+            
+            if (datosGuardados) {
+                const datos = JSON.parse(datosGuardados);
+                displayDiv.innerHTML = `
+                    <div class="border rounded p-2 bg-white">
+                        <strong> Último mensaje guardado:</strong><br>
+                        <strong>Original:</strong> ${datos.textoOriginal}<br>
+                        <strong>Encriptado:</strong> <code>${datos.textoEncriptado}</code><br>
+                        <strong>Clave usada:</strong> ${datos.claveUsada}<br>
+                        <strong>Guardado el:</strong> ${datos.fecha}
+                    </div>
+                `;
+            } else {
+                displayDiv.innerHTML = 'No hay ningún dato guardado en LocalStorage.';
+            }
+        }
+        
+        let valoresIndicadores = {};
+        
+        async function cargarIndicadores() {
+            try {
+                const response = await fetch('https://mindicador.cl/api');
+                const data = await response.json();
+                
+                valoresIndicadores = {
+                    uf: data.uf.valor,
+                    utm: data.utm.valor,
+                    euro: data.euro.valor
+                };
+                
+                document.getElementById('valorUF').innerHTML = `$${Math.round(valoresIndicadores.uf).toLocaleString('es-CL')}`;
+                document.getElementById('valorUTM').innerHTML = `$${Math.round(valoresIndicadores.utm).toLocaleString('es-CL')}`;
+                document.getElementById('valorEuro').innerHTML = `$${Math.round(valoresIndicadores.euro).toLocaleString('es-CL')}`;
+                
+                const fecha = new Date(data.fecha);
+                document.getElementById('fechaActualizacion').innerHTML = fecha.toLocaleDateString('es-CL');
+                
+                document.getElementById('loadingSpinner').style.display = 'none';
+                document.getElementById('indicadoresContent').style.display = 'block';
+                
+            } catch (error) {
+                console.error('Error al cargar indicadores:', error);
+                document.getElementById('loadingSpinner').style.display = 'none';
+                document.getElementById('indicadoresContent').style.display = 'block';
+                document.getElementById('valorUF').innerHTML = 'Error';
+                document.getElementById('valorUTM').innerHTML = 'Error';
+                document.getElementById('valorEuro').innerHTML = 'Error';
+            }
+        }
+        
+        function calcularConversion() {
+            const tipo = document.getElementById('tipoMoneda').value;
+            const cantidad = parseFloat(document.getElementById('cantidad').value);
+            const resultadoDiv = document.getElementById('resultadoConversion');
+            
+            if (isNaN(cantidad) || cantidad <= 0) {
+                resultadoDiv.style.display = 'block';
+                resultadoDiv.className = 'resultado-box alert alert-danger';
+                resultadoDiv.innerHTML = 'Por favor, ingresa una cantidad válida.';
+                return;
+            }
+            
+            let valor = valoresIndicadores[tipo];
+            let nombre = '';
+            
+            switch(tipo) {
+                case 'uf': nombre = 'UF'; break;
+                case 'utm': nombre = 'UTM'; break;
+                case 'euro': nombre = 'Euros'; break;
+            }
+            
+            if (!valor) {
+                resultadoDiv.style.display = 'block';
+                resultadoDiv.className = 'resultado-box alert alert-warning';
+                resultadoDiv.innerHTML = ' Esperando datos de la API. Intenta nuevamente en unos segundos.';
+                return;
+            }
+            
+            const total = cantidad * valor;
+            
+            resultadoDiv.style.display = 'block';
+            resultadoDiv.className = 'resultado-box alert alert-success';
+            resultadoDiv.innerHTML = `
+                 <strong>${cantidad} ${nombre} = $${total.toLocaleString('es-CL')} pesos chilenos</strong><br>
+                <small>Valor ${nombre}: $${Math.round(valor).toLocaleString('es-CL')}</small>
+            `;
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            mostrarDatosGuardados();
+            cargarIndicadores();
+        });
+    </script>
+</body>
+</html>

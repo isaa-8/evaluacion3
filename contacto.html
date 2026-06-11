@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto  RMR Fashion</title>
+    <link rel="stylesheet" href="estilos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .page-hero {
+            background-image: linear-gradient(to right, rgba(255,128,119,0.6), rgba(177,42,91,0.6)), url(img-galeria/tienda.jpg);
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0 60px;
+            text-align: center;
+            color: #fff;
+        }
+        .page-hero h1 { font-size: 48px; font-weight: 700; }
+        .page-hero p  { font-size: 20px; font-weight: 300; }
+
+        .contact-section { padding: 60px 0; }
+
+        .contact-card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,.10);
+            padding: 40px;
+        }
+
+        .form-label { font-weight: 600; color: #555; }
+
+        .form-control:focus, .form-select:focus {
+            border-color: #9f8ad0;
+            box-shadow: 0 0 0 .2rem rgba(159,138,208,.25);
+        }
+
+        .btn-enviar {
+            background-image: linear-gradient(to right, #ff8177, #b12a5b);
+            color: #fff;
+            border: none;
+            padding: 12px 40px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: opacity .3s;
+        }
+        .btn-enviar:hover { opacity: .85; color: #fff; }
+
+        .info-item { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 24px; }
+        .info-icon {
+            width: 46px; height: 46px; border-radius: 50%;
+            background-image: linear-gradient(135deg,#667eea,#764ba2);
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; font-size: 20px; flex-shrink: 0;
+        }
+        .info-text h6 { margin: 0; font-weight: 700; color: #333; }
+        .info-text p  { margin: 0; color: #666; font-size: 14px; }
+
+    
+        .campo-error  { border-color: #dc3545 !important; }
+        .campo-ok     { border-color: #28a745 !important; }
+        .msg-error    { color: #dc3545; font-size: 13px; margin-top: 4px; display: none; }
+        .msg-exito    {
+            background: #d4edda; color: #155724; border: 1px solid #c3e6cb;
+            border-radius: 8px; padding: 16px; display: none; margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+   
+    <header class="page-hero">
+        <button class="menus" id="btnMenu">☰</button>
+        <nav class="menu-navegacion">
+            <a href="index.html">Inicio</a>
+            <a href="index.html#servicio">Servicio</a>
+            <a href="index.html#galeria">Galeria</a>
+            <a href="index.html#expertos">Expertos</a>
+            <a href="contacto.html">Contactos</a>
+            <a href="tienda.html">Tienda</a>
+            <a href="quienes-somos.html">Quiénes Somos</a>
+            <a href="terminos.html">Términos y Condiciones</a>
+            <a href="requerimientos.html">Proyecto</a>
+            <a href="diagrama-clases.html">Diagrama Clases</a>
+            <a href="casos-uso.html">Casos de Uso</a>
+        </nav>
+        <div class="container">
+            <h1>Contáctanos</h1>
+            <p>Estamos aquí para ayudarte con tu estilo</p>
+        </div>
+    </header>
+
+    <main class="contact-section">
+        <div class="container">
+            <div class="row g-5">
+
+                
+                <div class="col-lg-7">
+                    <div class="contact-card">
+                        <h2 class="subtitulo" style="text-align:left; font-size:28px; margin-bottom:30px;">
+                            Envíanos un mensaje
+                        </h2>
+
+                        <div id="formContacto">
+                           
+                            <div class="mb-3">
+                                <label for="nombre" class="form-label">Nombre completo *</label>
+                                <input type="text" id="nombre" class="form-control" placeholder="Ej: Juan Pérez">
+                                <p class="msg-error" id="err-nombre">Por favor ingresa tu nombre completo.</p>
+                            </div>
+
+                           
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Correo electrónico *</label>
+                                <input type="email" id="email" class="form-control" placeholder="ejemplo@correo.com">
+                                <p class="msg-error" id="err-email">Ingresa un correo electrónico válido.</p>
+                            </div>
+
+                            
+                            <div class="mb-3">
+                                <label for="telefono" class="form-label">Teléfono</label>
+                                <input type="tel" id="telefono" class="form-control" placeholder="+56 9 1234 5678">
+                                <p class="msg-error" id="err-telefono">El teléfono solo puede contener números y el símbolo +.</p>
+                            </div>
+
+                       
+                            <div class="mb-3">
+                                <label for="asunto" class="form-label">Asunto *</label>
+                                <select id="asunto" class="form-select">
+                                    <option value=""> Selecciona un asunto </option>
+                                    <option value="asesoria">Asesoría de talle</option>
+                                    <option value="shopper">Personal shopper</option>
+                                    <option value="ajustes">Ajustes y reformas</option>
+                                    <option value="otro">Otro</option>
+                                </select>
+                                <p class="msg-error" id="err-asunto">Selecciona un asunto.</p>
+                            </div>
+
+                            
+                            <div class="mb-3">
+                                <label for="mensaje" class="form-label">Mensaje *</label>
+                                <textarea id="mensaje" class="form-control" rows="5"
+                                    placeholder="Escribe aquí tu consulta..."></textarea>
+                                <p class="msg-error" id="err-mensaje">El mensaje debe tener al menos 10 caracteres.</p>
+                            </div>
+
+                            
+                            <div class="mb-4 form-check">
+                                <input type="checkbox" id="terminos" class="form-check-input">
+                                <label for="terminos" class="form-check-label">
+                                    Acepto los <a href="terminos.html" style="color:#9f8ad0;">términos y condiciones</a>
+                                </label>
+                                <p class="msg-error" id="err-terminos">Debes aceptar los términos y condiciones.</p>
+                            </div>
+
+                            <button class="btn-enviar" onclick="validarFormulario()">Enviar mensaje</button>
+
+                            <div class="msg-exito" id="msg-exito">
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+               
+                <div class="col-lg-5">
+                    <div class="mb-4">
+                        <div class="info-item">
+                            <div class="info-icon"><i class="bx bx-map"></i></div>
+                            <div class="info-text">
+                                <h6>Dirección</h6>
+                                <p>Av. España 01234, Punta Arenas, Chile</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon"><i class="bx bx-phone"></i></div>
+                            <div class="info-text">
+                                <h6>Teléfono</h6>
+                                <p>+56 61 234 5678</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon"><i class="bx bx-envelope"></i></div>
+                            <div class="info-text">
+                                <h6>Correo</h6>
+                                <p>contacto@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon"><i class="bx bx-time"></i></div>
+                            <div class="info-text">
+                                <h6>Horario</h6>
+                                <p>Lunes a Viernes: 09:00  18:00</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+                    <div class="mapa-embed">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d48168.5!2d-70.9167!3d-53.1638!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xbe94d7a5b9e3c4b3%3A0x4a2c1234567890ab!2sPunta%20Arenas%2C%20Chile!5e0!3m2!1ses!2scl!4v1700000000000"
+                            width="100%" height="300" style="border:0;" allowfullscreen=""
+                            loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer id="contacto-footer">
+        <div class="contenedor footer-content">
+            <div class="contact-us">
+                <h2 class="brand">RMR Fashion</h2>
+                <p>Somos expertos en la creación de tu guardarropa ideal</p>
+            </div>
+            <div class="social-media">
+                <a href="./" class="social-media-icon"><i class="bx bxl-facebook"></i></a>
+                <a href="./" class="social-media-icon"><i class="bx bxl-twitter"></i></a>
+                <a href="./" class="social-media-icon"><i class="bx bxl-instagram"></i></a>
+            </div>
+        </div>
+        <div class="line"></div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/menu.js"></script>
+    <script>
+
+
+        
+        function mostrarError(idCampo, idError, mostrar) {
+            const campo = document.getElementById(idCampo);
+            const error = document.getElementById(idError);
+            if (mostrar) {
+                campo.classList.add('campo-error');
+                campo.classList.remove('campo-ok');
+                error.style.display = 'block';
+            } else {
+                campo.classList.remove('campo-error');
+                campo.classList.add('campo-ok');
+                error.style.display = 'none';
+            }
+        }
+
+        
+        function esEmailValido(email) {
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
+        }
+
+        
+        function esTelefonoValido(tel) {
+            if (tel === '') return true; 
+            const regex = /^[0-9+\s\-]+$/;
+            return regex.test(tel);
+        }
+
+        function validarFormulario() {
+            let formularioValido = true;
+
+           
+            const nombre = document.getElementById('nombre').value.trim();
+            if (nombre.length < 3) {
+                mostrarError('nombre', 'err-nombre', true);
+                formularioValido = false;
+            } else {
+                mostrarError('nombre', 'err-nombre', false);
+            }
+
+            
+            const email = document.getElementById('email').value.trim();
+            if (!esEmailValido(email)) {
+                mostrarError('email', 'err-email', true);
+                formularioValido = false;
+            } else {
+                mostrarError('email', 'err-email', false);
+            }
+
+            
+            const telefono = document.getElementById('telefono').value.trim();
+            if (!esTelefonoValido(telefono)) {
+                mostrarError('telefono', 'err-telefono', true);
+                formularioValido = false;
+            } else {
+                mostrarError('telefono', 'err-telefono', false);
+            }
+
+            
+            const asunto = document.getElementById('asunto').value;
+            if (asunto === '') {
+                mostrarError('asunto', 'err-asunto', true);
+                formularioValido = false;
+            } else {
+                mostrarError('asunto', 'err-asunto', false);
+            }
+
+            
+            const mensaje = document.getElementById('mensaje').value.trim();
+            if (mensaje.length < 10) {
+                mostrarError('mensaje', 'err-mensaje', true);
+                formularioValido = false;
+            } else {
+                mostrarError('mensaje', 'err-mensaje', false);
+            }
+
+            
+            const terminos = document.getElementById('terminos').checked;
+            if (!terminos) {
+                mostrarError('terminos', 'err-terminos', true);
+                formularioValido = false;
+            } else {
+                mostrarError('terminos', 'err-terminos', false);
+            }
+
+            
+            if (formularioValido) {
+                document.getElementById('msg-exito').style.display = 'block';
+                // Limpiar formulario
+                limpiarFormulario();
+            }
+        }
+
+        
+        function limpiarFormulario() {
+            const campos = ['nombre', 'email', 'telefono', 'mensaje'];
+            campos.forEach(id => {
+                const campo = document.getElementById(id);
+                campo.value = '';
+                campo.classList.remove('campo-ok', 'campo-error');
+            });
+            document.getElementById('asunto').value = '';
+            document.getElementById('terminos').checked = false;
+        }
+
+        
+        document.getElementById('nombre').addEventListener('input', function() {
+            mostrarError('nombre', 'err-nombre', this.value.trim().length < 3);
+        });
+        document.getElementById('email').addEventListener('input', function() {
+            mostrarError('email', 'err-email', !esEmailValido(this.value.trim()));
+        });
+        document.getElementById('mensaje').addEventListener('input', function() {
+            mostrarError('mensaje', 'err-mensaje', this.value.trim().length < 10);
+        });
+    </script>
+</body>
+</html>

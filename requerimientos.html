@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Requerimientos del Proyecto  RMR Fashion</title>
+    <link rel="stylesheet" href="estilos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .page-hero {
+            background-image: linear-gradient(to right, rgba(33,147,176,0.70), rgba(109,213,237,0.70)), url(img-galeria/tienda.jpg);
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0 60px;
+            text-align: center;
+            color: #fff;
+        }
+        .page-hero h1 { font-size: 48px; font-weight: 700; }
+        .page-hero p  { font-size: 18px; font-weight: 300; }
+
+        .req-section { padding: 60px 0; }
+
+        .req-card {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,.09);
+            padding: 36px;
+            margin-bottom: 28px;
+        }
+        .req-card h3 {
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .req-icon {
+            width: 44px; height: 44px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px; color: #fff; flex-shrink: 0;
+        }
+        .icon-func   { background-image: linear-gradient(135deg,#ff8177,#b12a5b); }
+        .icon-no-func{ background-image: linear-gradient(135deg,#667eea,#764ba2); }
+        .icon-tech   { background-image: linear-gradient(135deg,#2193b0,#6dd5ed); }
+        .icon-ui     { background-image: linear-gradient(135deg,#f7971e,#ffd200); }
+
+        .req-card table th {
+            background-image: linear-gradient(to right, #667eea, #764ba2);
+            color: #fff;
+            font-weight: 600;
+        }
+        .req-card table td { color: #555; vertical-align: top; line-height: 1.75; font-size: 14px; }
+        .req-card table tr:nth-child(even) td { background: #f8f6ff; }
+
+        .badge-req {
+            display: inline-block; padding: 3px 12px; border-radius: 20px;
+            font-size: 12px; font-weight: 600; color: #fff;
+        }
+        .badge-alta   { background: #b12a5b; }
+        .badge-media  { background: #ff8177; }
+        .badge-baja   { background: #9f8ad0; }
+
+        .tech-pill {
+            display: inline-block;
+            background: #f8f6ff;
+            border: 1px solid #d0c7f0;
+            color: #764ba2;
+            border-radius: 20px;
+            padding: 6px 16px;
+            font-size: 13px;
+            font-weight: 600;
+            margin: 4px;
+        }
+
+        .cronograma-item {
+            display: flex; gap: 20px; align-items: flex-start; margin-bottom: 24px;
+        }
+        .crono-dot {
+            width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+            background-image: linear-gradient(135deg,#ff8177,#b12a5b);
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; font-weight: 700; font-size: 14px;
+        }
+        .crono-content h6 { font-weight: 700; color: #333; margin-bottom: 4px; }
+        .crono-content p  { color: #666; font-size: 14px; margin: 0; }
+    </style>
+</head>
+<body>
+
+    <header class="page-hero">
+        <button class="menus" id="btnMenu">☰</button>
+        <nav class="menu-navegacion">
+            <a href="index.html">Inicio</a>
+            <a href="index.html#servicio">Servicio</a>
+            <a href="index.html#galeria">Galeria</a>
+            <a href="index.html#expertos">Expertos</a>
+            <a href="contacto.html">Contactos</a>
+            <a href="tienda.html">Tienda</a>
+            <a href="herramientas.html">Herramientas</a>
+            <a href="quienes-somos.html">Quiénes Somos</a>
+            <a href="terminos.html">Términos y Condiciones</a>
+            <a href="requerimientos.html">Proyecto</a>
+            <a href="diagrama-clases.html">Diagrama Clases</a>
+            <a href="casos-uso.html">Casos de Uso</a>
+        </nav>
+        <div class="container">
+            <h1>Requerimientos del Proyecto</h1>
+            <p>Documentación técnica y funcional de RMR Fashion</p>
+        </div>
+    </header>
+
+    <main class="req-section">
+        <div class="container">
+
+            <!-- Descripción general -->
+            <div class="req-card">
+                <h3>
+                    <div class="req-icon icon-tech"><i class="bx bx-info-circle"></i></div>
+                    Descripción General del Proyecto
+                </h3>
+                <p style="color:#555; line-height:1.85; font-size:15px;">
+                    <strong>RMR Fashion</strong> es un sitio web de moda personalizada desarrollado como proyecto 
+                    de evaluación para el curso de Programación Front-End. El sitio está orientado a ofrecer 
+                    servicios de asesoría de talle, personal shopper y ajustes de prendas, 
+                    contando con una tienda virtual, formulario de contacto validado y secciones informativas.
+                </p>
+                <p style="color:#555; line-height:1.85; font-size:15px; margin-top:12px;">
+                    El proyecto fue desarrollado íntegramente con tecnologías web estándar (HTML5, CSS3 y JavaScript puro) 
+                    más el framework Bootstrap 5, sin dependencia de back-end ni bases de datos.
+                </p>
+            </div>
+
+            <!-- Requerimientos funcionales -->
+            <div class="req-card">
+                <h3>
+                    <div class="req-icon icon-func"><i class="bx bx-check-circle"></i></div>
+                    Requerimientos Funcionales
+                </h3>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Requerimiento</th>
+                                <th>Descripción</th>
+                                <th>Prioridad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>RF-01</td>
+                                <td>Página de inicio</td>
+                                <td>Presentar la marca con hero visual, sección de servicios, galería con lightbox y sección de expertos.</td>
+                                <td><span class="badge-req badge-alta">Alta</span></td>
+                            </tr>
+                            <tr>
+                                <td>RF-02</td>
+                                <td>Menú de navegación</td>
+                                <td>Menú lateral deslizante que aparece al presionar el botón ☰, accesible desde todas las páginas.</td>
+                                <td><span class="badge-req badge-alta">Alta</span></td>
+                            </tr>
+                            <tr>
+                                <td>RF-03</td>
+                                <td>Galería con lightbox</td>
+                                <td>Las imágenes de la galería se pueden ampliar al hacer clic sobre ellas con una animación de apertura/cierre.</td>
+                                <td><span class="badge-req badge-alta">Alta</span></td>
+                            </tr>
+                            <tr>
+                                <td>RF-04</td>
+                                <td>Tienda virtual</td>
+                                <td>Catálogo de productos con filtros por categoría, carrito de compras interactivo y simulación de checkout.</td>
+                                <td><span class="badge-req badge-alta">Alta</span></td>
+                            </tr>
+                            <tr>
+                                <td>RF-05</td>
+                                <td>Formulario de contacto</td>
+                                <td>Formulario con validación en tiempo real: nombre, email, teléfono, asunto, mensaje y aceptación de términos.</td>
+                                <td><span class="badge-req badge-alta">Alta</span></td>
+                            </tr>
+                            <tr>
+                                <td>RF-06</td>
+                                <td>Página Quiénes Somos</td>
+                                <td>Historia de la empresa, misión, visión, valores y presentación del equipo.</td>
+                                <td><span class="badge-req badge-media">Media</span></td>
+                            </tr>
+                            <tr>
+                                <td>RF-07</td>
+                                <td>Términos y Condiciones</td>
+                                <td>Documento legal con las condiciones de uso del sitio y los servicios de RMR Fashion.</td>
+                                <td><span class="badge-req badge-media">Media</span></td>
+                            </tr>
+                            <tr>
+                                <td>RF-08</td>
+                                <td>Diagrama de Clases</td>
+                                <td>Representación visual SVG del modelo de clases del sistema de la tienda.</td>
+                                <td><span class="badge-req badge-baja">Baja</span></td>
+                            </tr>
+                            <tr>
+                                <td>RF-09</td>
+                                <td>Casos de Uso</td>
+                                <td>Diagrama y tabla de casos de uso del sistema con actores: cliente, asesor y administrador.</td>
+                                <td><span class="badge-req badge-baja">Baja</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Requerimientos no funcionales -->
+            <div class="req-card">
+                <h3>
+                    <div class="req-icon icon-no-func"><i class="bx bx-cog"></i></div>
+                    Requerimientos No Funcionales
+                </h3>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Categoría</th>
+                                <th>Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>RNF-01</td>
+                                <td>Usabilidad</td>
+                                <td>El sitio debe ser intuitivo y navegable sin necesidad de instrucciones previas. Menú visible en todas las páginas.</td>
+                            </tr>
+                            <tr>
+                                <td>RNF-02</td>
+                                <td>Diseño responsivo</td>
+                                <td>El sitio debe adaptarse correctamente a dispositivos de escritorio, tablet (≥800px) y móvil (≤500px).</td>
+                            </tr>
+                            <tr>
+                                <td>RNF-03</td>
+                                <td>Rendimiento</td>
+                                <td>Las páginas deben cargar en menos de 3 segundos en condiciones normales de red.</td>
+                            </tr>
+                            <tr>
+                                <td>RNF-04</td>
+                                <td>Consistencia visual</td>
+                                <td>Paleta de colores, tipografía y componentes uniformes en todas las páginas del sitio.</td>
+                            </tr>
+                            <tr>
+                                <td>RNF-05</td>
+                                <td>Accesibilidad</td>
+                                <td>Uso de atributos <code>alt</code> en imágenes, contraste de colores adecuado y estructura semántica HTML5.</td>
+                            </tr>
+                            <tr>
+                                <td>RNF-06</td>
+                                <td>Compatibilidad</td>
+                                <td>Compatible con navegadores modernos: Chrome, Firefox, Edge y Safari en sus últimas versiones.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
+            
+    </main>
+
+    <footer>
+        <div class="contenedor footer-content">
+            <div class="contact-us">
+                <h2 class="brand">RMR Fashion</h2>
+                <p>Somos expertos en la creación de tu guardarropa ideal</p>
+            </div>
+            <div class="social-media">
+                <a href="./" class="social-media-icon"><i class="bx bxl-facebook"></i></a>
+                <a href="./" class="social-media-icon"><i class="bx bxl-twitter"></i></a>
+                <a href="./" class="social-media-icon"><i class="bx bxl-instagram"></i></a>
+            </div>
+        </div>
+        <div class="line"></div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/menu.js"></script>
+</body>
+</html>
